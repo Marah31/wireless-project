@@ -1,4 +1,4 @@
-/* h1 {
+/* /* h1 {
     display: flex; /* to make the header in the middle
     justify-content: center;
     font-family: 'Courier New', Courier, monospace;
@@ -38,6 +38,9 @@
 
 } */
 
+
+
+/*
 body, html {
     margin: 0;
     padding: 0;
@@ -162,4 +165,176 @@ body {
     cursor: pointer;
     background-color: #56c6c6;
     color: white;
+} 
+
+*/
+
+
+
+
+
+ body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    color: white;
+    background-color: #2c2c54;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #2c2c54;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.main-header {
+    background-color: #2c2c54;
+    padding-top: 60px;  
+    text-align: center;
+    color: white;
+}
+
+.logo h1 {
+    font-size: 2rem;
+    padding-left: 40px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1rem;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.cta-buttons .btn {
+    background-color: #ff4757;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+}
+
+.cta-buttons .btn:hover {
+    background-color: #e84118;
+}
+
+.header-content {
+    padding: 50px 20px;
+    background: url('header-inspo.jpg') no-repeat center center/cover;
+    text-align: center;
+}
+
+.header-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.header-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.header-content .buttons .btn {
+    background-color: #56c6c6;
+    padding: 10px 30px;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin: 5px;
+}
+
+.header-content .buttons .btn.primary {
+    background-color: #1e90ff;
+
+}
+
+.header-content .buttons .btn.secondary {
+    background-color: #ff4757;
+}
+
+.header-content .buttons .btn:hover {
+    opacity: 0.8;
+
+}
+
+main {
+    padding: 50px 20px;
+    padding-top: 70px;  
+}
+
+.calculator-section {
+    background-color: #40407a;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.calculator-section h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.calc-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.calc-item {
+    background-color: #2c3e50;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    width: calc(50% - 40px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.calc-item label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.calc-item input, .calc-item select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.calc-item button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1e90ff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.calc-item button:hover {
+    background-color: #1c7ed6;
+}
+
+.calc-result {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
