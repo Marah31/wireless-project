@@ -1,0 +1,135 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neat Header Design</title>
+    <link rel="stylesheet" href="projectcss.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <h1>CalcWee</h1>
+            </div>
+            <nav class="nav-links">
+                <a href="#">Basic</a>
+                <a href="#">Advanced</a>
+                <a href="#">Power</a>
+                <a href="#">Throughput</a>
+                <a href="#">Design</a>
+                <a href="#">Support</a>
+            </nav>
+            <div class="cta-buttons">
+                <button class="btn register">Register for free</button>
+            </div>
+        </div>
+        <div class="header-content">
+            <h2>Online Calculator for Wireless and Mobile Networks</h2>
+            <p>easy and fast way to find all the needed numbers and Calculations.</p>
+            <div class="buttons">
+                <button class="btn primary">Play a reality</button>
+                <button class="btn secondary">Watch a demo</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="basic_calc">
+        <div class="sampler">
+            <span>    
+            <label for="bandwidth">Bandwidth</label>
+            <input type="text"  id="bandwidth">
+            <label for="unit">unit</label>
+            <input list="unit" name="unit" id="unit">
+            <datalist id="unit">
+                <option value="Hz">
+                <option value="KHz">
+                <option value="MHz">
+            </datalist>
+            </span>
+            <button onclick="calculate_sampler()">Calculate</button>
+            <div class="sample_result" id="sample_result">
+                <!-- Result will be displayed here -->
+            </div>
+        </div>
+        <div class="quantizer">
+            <span>
+                <label for="num_of_bits">Number of bits</label>
+                <input type="text"  id="num_of_bits">
+                <button onclick="calculate_quantizer()">Calculate</button>
+                <div class="quantizer_result" id="quantizer_result">
+                    <!-- Result will be displayed here -->
+                </div>
+            </span>
+        </div>
+        <div class="source_encoder">
+            <span>
+                <label for="compression_rate">encoder compression rate: </label>
+                <input type="text"  id="compression_rate">
+                <button onclick="calculate_Sencoder_result()">Calculate</button>
+                <div class="Sencoder_result" id="Sencoder_result">
+                    <!-- Result will be displayed here -->
+                </div>
+            </span>
+        </div>
+        <div class="channel_encoder">
+            <span>
+                <label for="Cencoder_rate">Channel encoder rate: </label>
+                <input type="text"  id="Cencoder_rate">
+                <button onclick="calculate_Cencoder_result()">Calculate</button>
+                <div class="Cencoder_result" id="Cencoder_result">
+                    <!-- Result will be displayed here -->
+                </div>
+            </span>
+        </div>
+        <div class="interleaver"></div>
+    </div>
+
+
+    <script>
+        let sampling_freq = 0; // Define sampling_freq in a broader scope
+        output_rate = 0;
+        function calculate_sampler() {
+            const bandwidthValue = parseFloat(document.getElementById('bandwidth').value);
+            const unitValue = document.getElementById('unit').value;
+            if (!isNaN(bandwidthValue) && unitValue) {
+                sampling_freq = 2 * bandwidthValue; // Assign value to the broader scope variable
+                document.getElementById('sample_result').textContent = `Result: ${sampling_freq} ${unitValue}`;
+            } else {
+                document.getElementById('sample_result').textContent = 'Please enter a valid number and select a unit';
+            }
+        }
+
+        function calculate_quantizer() {
+            const quant_level = parseFloat(document.getElementById('num_of_bits').value);
+            if (!isNaN(quant_level)) {
+                const result = Math.pow(2, quant_level);
+                document.getElementById('quantizer_result').textContent = `Result: ${result}`;
+            } else {
+                document.getElementById('quantizer_result').textContent = 'Please enter a valid number';
+            }
+        }
+
+        function calculate_Sencoder_result() {
+            const comp_rate = parseFloat(document.getElementById('compression_rate').value);
+            if (!isNaN(comp_rate)) {
+                const num_of_bits = parseFloat(document.getElementById('num_of_bits').value); // Fetch num_of_bits here
+                const input_rate = sampling_freq * num_of_bits; // Use sampling_freq from broader scope
+                output_rate = input_rate * comp_rate;
+                document.getElementById('Sencoder_result').textContent = `Result: ${output_rate}`;
+            } else {
+                document.getElementById('Sencoder_result').textContent = 'Please enter a valid number';
+            }
+        }
+        function calculate_Cencoder_result() {
+            const Cencoder_rate = parseFloat(document.getElementById('Cencoder_rate').value);
+            if (!isNaN(Cencoder_rate)) {
+                outputC_bit_rate = output_rate / Cencoder_rate;
+                document.getElementById('Cencoder_result').textContent = `Result: ${outputC_bit_rate}`;
+            } else {
+                document.getElementById('Cencoder_result').textContent = 'Please enter a valid number';
+            }
+        }
+    </script>
+</body>
+</html>
