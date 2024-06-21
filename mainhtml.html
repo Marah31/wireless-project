@@ -38,10 +38,10 @@
         <h2>Basic Calculations</h2>
         <div class="calc-container">
             <div class="sampler calc-item">
-                    
-                <label for="bandwidth">Bandwidth</label>
+                <h3>sampling frequency calculator</h3>
+                <label for="bandwidth">please enter the Bandwidth</label>
                 <input type="text"  id="bandwidth">
-                <label for="unit1">unit</label>
+                <label for="unit1">select unit</label>
                 <select name="units" id="unit1">
                     <option value="Hz">HZ</option>
                     <option value="KHz">KHz</option>
@@ -55,8 +55,8 @@
                 </div>
             </div>
             <div class="quantizer calc-item">
-                
-                    <label for="num_of_bits">Number of bits</label>
+                    <h3>quantizer level calculator</h3>
+                    <label for="num_of_bits">insert Number of bits</label>
                     <input type="text"  id="num_of_bits">
                     <button onclick="calculate_quantizer()">Calculate</button>
                     <div class="quantizer_result calc-result" id="quantizer_result">
@@ -65,8 +65,8 @@
                 
             </div>
             <div class="source_encoder calc-item">
-                
-                    <label for="compression_rate">encoder compression rate: </label>
+                    <h3>bit rate at output of source encoder calculator</h3>
+                    <label for="compression_rate">insert encoder compression rate: </label>
                     <input type="text"  id="compression_rate">
                     <button onclick="calculate_Sencoder_result()">Calculate</button>
                     <div class="Sencoder_result calc-result" id="Sencoder_result">
@@ -75,8 +75,8 @@
                 
             </div>
             <div class="channel_encoder calc-item">
-                
-                    <label for="Cencoder_rate">Channel encoder rate: </label>
+                    <h3>bit rate at output of channel encoder calculator</h3>
+                    <label for="Cencoder_rate">insert Channel encoder rate: </label>
                     <input type="text"  id="Cencoder_rate">
                     <button onclick="calculate_Cencoder_result()">Calculate</button>
                     <div class="Cencoder_result calc-result" id="Cencoder_result">
@@ -85,6 +85,7 @@
                 
             </div>
             <div class="interleaver calc-item">
+                <h3>Interleaver</h3>
                 <p>the bit rate of the interleaver is equal to bit rate of channel encoder output</p>
                 <button onclick="calculate_Cencoder_result()">Calculate</button>
                     <div class="Cencoder_result calc-result" id="Cencoder_result">
@@ -99,8 +100,8 @@
         <h2>Advanced Calculations</h2>
         <div class="calc-container">
             <div class="resource_element calc-item">
-                
-                    <label for="QAM">Number of bits</label>
+                    <h3>resource element number of bits calculator</h3>
+                    <label for="QAM">enter Number of bits</label>
                     <input type="text"  id="QAM">
                     <button onclick="calculate_resource_element()">Calculate</button>
                     <div class="resource_result calc-result" id="resource_result">
@@ -110,16 +111,16 @@
             </div>
 
             <div class="OFDM_symbol calc-item">
-                
-                    <label for="OFDM_bandwidth">OFDM bandwidth</label>
+                    <h3>OFDM symbol number of bits calculator</h3>
+                    <label for="OFDM_bandwidth">enter OFDM bandwidth</label>
                     <input type="number"  id="OFDM_bandwidth" min="0">
-                    <label for="unit2">unit</label>
+                    <label for="unit2">select unit</label>
                     <select name="unit" id="unit2">
                         <option value="Hz">HZ</option>
                         <option value="KHz">KHz</option>
                         <option value="MHz">MHz</option>
                     </select>
-                    <label for="subCarrier">subCarrier spacing</label>
+                    <label for="subCarrier">enter subCarrier spacing</label>
                     <input type="number"  id="subCarrier" min="0">
                     <button onclick="calculate_OFDM_symbol()">Calculate</button>
                     <div class="OFDM_symbol_result calc-result" id="OFDM_symbol_result">
@@ -128,8 +129,8 @@
                 
             </div>
             <div class="OFDM_block calc-item">
-                
-                    <label for="num_of_symbol">Number of OFDM symbols</label>
+                    <h3>OFDM resource block number of bits calculator</h3>
+                    <label for="num_of_symbol"> enter Number of OFDM symbols</label>
                     <input type="text"  id="num_of_symbol">
                     <button onclick="calculate_OFDM_resource_block()">Calculate</button>
                     <div class="OFDM_block_result calc-result" id="OFDM_block_result">
@@ -138,11 +139,11 @@
                 
             </div>
             <div class="Max_trans_rate calc-item">
-                
-                    <label for="num_of_blocks">Number of resource block</label>
+                    <h3>user Maximum transmission rate calculator</h3>
+                    <label for="num_of_blocks">enter Number of resource block</label>
                     <input type="text"  id="num_of_blocks">
 
-                    <label for="block_duration">Duration of resource block</label>
+                    <label for="block_duration">enter Duration of resource block</label>
                     <input type="text"  id="block_duration">
 
                     <button onclick="calculate_max_trans_rate()">Calculate</button>
@@ -166,7 +167,7 @@
             const unitValue = document.getElementById('unit1').value;
             if (!isNaN(bandwidthValue)) {
                 sampling_freq = 2 * bandwidthValue; // Assign value to the broader scope variable
-                document.getElementById('sample_result').textContent = `Result: ${sampling_freq} ${unitValue}`;
+                document.getElementById('sample_result').textContent = `the sampler frequency fs=: ${sampling_freq} ${unitValue}`;
             } else {
                 document.getElementById('sample_result').textContent = 'Please enter a valid number and select a unit';
             }
@@ -176,7 +177,7 @@
             const quant_level = parseFloat(document.getElementById('num_of_bits').value);
             if (!isNaN(quant_level)) {
                 const result = Math.pow(2, quant_level);
-                document.getElementById('quantizer_result').textContent = `Result: ${result}`;
+                document.getElementById('quantizer_result').textContent = `quantizer level= : ${result}`;
             } else {
                 document.getElementById('quantizer_result').textContent = 'Please enter a valid number';
             }
@@ -188,7 +189,7 @@
                 const num_of_bits = parseFloat(document.getElementById('num_of_bits').value); // Fetch num_of_bits here
                 const input_rate = sampling_freq * num_of_bits; // Use sampling_freq from broader scope
                 output_rate = input_rate * comp_rate;
-                document.getElementById('Sencoder_result').textContent = `Result: ${output_rate}`;
+                document.getElementById('Sencoder_result').textContent = `bit rate at output of source encoder: ${output_rate}`;
             } else {
                 document.getElementById('Sencoder_result').textContent = 'Please enter a valid number';
             }
@@ -197,7 +198,7 @@
             const Cencoder_rate = parseFloat(document.getElementById('Cencoder_rate').value);
             if (!isNaN(Cencoder_rate)) {
                 outputC_bit_rate = output_rate / Cencoder_rate;
-                document.getElementById('Cencoder_result').textContent = `Result: ${outputC_bit_rate}`;
+                document.getElementById('Cencoder_result').textContent = `bit rate at output of channel encoder: ${outputC_bit_rate}`;
             } else {
                 document.getElementById('Cencoder_result').textContent = 'Please enter a valid number';
             }
@@ -208,7 +209,7 @@
             if (Number.isInteger(QAM)) {
                 const num_of_bits= Math.log2(QAM);
                 let res= Math.round(num_of_bits);
-                document.getElementById('resource_result').textContent = `Result: ${res}`;
+                document.getElementById('resource_result').textContent = `number of bits per resource element: ${res}`;
             } else {
                 document.getElementById('resource_result').textContent = 'Please enter a valid number';
             }
@@ -226,7 +227,7 @@
             // Check if input values are valid numbers and unitValue is not empty
             if (!isNaN(bw) && !isNaN(subCarrier_spacing)) {
                 OFDM_num_bit_symbol = 10 * bw / subCarrier_spacing;
-                document.getElementById('OFDM_symbol_result').textContent = `Result: ${OFDM_num_bit_symbol} ${unitValue} bit/OFDM symbol`;
+                document.getElementById('OFDM_symbol_result').textContent = `number of bits per OFDM symbol: ${OFDM_num_bit_symbol} ${unitValue} bit/OFDM symbol`;
             } else {
                 document.getElementById('OFDM_symbol_result').textContent = 'Please enter a valid number';
             }
@@ -235,7 +236,7 @@
             const num_of_symbol = parseFloat(document.getElementById('num_of_symbol').value);
             if (Number.isInteger(num_of_symbol)) {
                 num_of_bits_block =num_of_symbol*OFDM_num_bit_symbol;
-                document.getElementById('OFDM_block_result').textContent = `Result: ${num_of_bits_block} bit/resource block`;
+                document.getElementById('OFDM_block_result').textContent = `number of bits per OFDM resource block: ${num_of_bits_block} bit/resource block`;
             } else {
                 document.getElementById('OFDM_block_result').textContent = 'Please enter a valid number';
             }
@@ -247,7 +248,7 @@
             const block_duration = parseFloat(document.getElementById('block_duration').value);
             if (Number.isInteger(num_of_blocks)) {
                 const max_trans_rate =num_of_blocks*num_of_bits_block/block_duration;
-                document.getElementById('Max_trans_rate_result').textContent = `Result: ${max_trans_rate} bit/second`;
+                document.getElementById('Max_trans_rate_result').textContent = `user maximum transmission rate: ${max_trans_rate} bit/second`;
             } else {
                 document.getElementById('Max_trans_rate_result').textContent = 'Please enter a valid number';
             }

@@ -303,6 +303,16 @@ main {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.calc-item h3 {
+    font-size: 1.5rem;  /* Larger font size */
+    font-weight: bold;  /* Bold text */
+    color: #ff6b6b;     /* Different color, you can choose any color you prefer */
+    margin-bottom: 10px; /* Spacing below the header */
+    text-align: center;  /* Center align the text */
+    border-bottom: 2px solid #ff6b6b; /* Optional: Add a bottom border for emphasis */
+    padding-bottom: 5px; /* Space between text and border */
+}
+
 .calc-item label {
     display: block;
     margin-bottom: 10px;
