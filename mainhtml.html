@@ -301,12 +301,8 @@
                     <label for="8_PSK">8_PSK</label>
                 </div>
                 <div>
-                    <input id="BPSK" type="radio" name="OS" value="BPSK">
-                    <label for="BPSK">BPSK</label>
-                </div>
-                <div>
-                    <input id="QPSK" type="radio" name="OS" value="QPSK">
-                    <label for="QPSK">QPSK</label>
+                    <input id="BPSK/QPSK" type="radio" name="OS" value="BPSK/QPSK">
+                    <label for="BPSK/QPSK">BPSK</label>
                 </div>
 
                 <div>
@@ -321,9 +317,9 @@
             </div>
 
             <div class="calc-item">
-            <button onclick="calculate_power()"> Calculate power</button>
+            <button onclick="calculate_receiver_power()"> Calculate power</button>
             </div>
-            <div class="Max_trans_rate_result calc-result" id="Max_trans_rate_result">
+            <div class="power_result calc-result" id="power_result">
             </div>
         </section>        
     </div>
@@ -459,33 +455,152 @@
                     return value ; 
                 case 'dBm':
                     value= value - 30;
-                    return value * 1000; // Convert KHz to Hz
                 default:
                     return value; // Default case (should not happen if the units are controlled)
         }
     }
-    function openTab(evt, tabName) {
-        // Hide all elements with class="tab-content" by setting display to none
-        var tabcontent = document.getElementsByClassName("tab-content");
-        for (var i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        
-        // Remove the class "active" from all elements with class="tab-button"
-        var tabbuttons = document.getElementsByClassName("tab-button");
-        for (var i = 0; i < tabbuttons.length; i++) {
-            tabbuttons[i].className = tabbuttons[i].className.replace(" active", "");
-        }
+        function openTab(evt, tabName) {
+            // Hide all elements with class="tab-content" by setting display to none
+            var tabcontent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            
+            // Remove the class "active" from all elements with class="tab-button"
+            var tabbuttons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].className = tabbuttons[i].className.replace(" active", "");
+            }
 
-        // Show the current tab, and add an "active" class to the button that opened the tab
-        document.getElementById(tabName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
 
     // Optional: Automatically open the first tab if needed
-    document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById("defaultOpen").click(); // Add an ID "defaultOpen" to the default tab link
-    });
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("defaultOpen").click(); // Add an ID "defaultOpen" to the default tab link
+        });
+
+        const modulationSchemes = {
+    '8_PSK': [
+        { EbNo: 0, BER: 0.25 },
+        { EbNo: 1, BER: 0.23 },
+        { EbNo: 2, BER: 0.1 },
+        { EbNo: 3, BER: 0.08 },
+        { EbNo: 4, BER: 0.06 },
+        { EbNo: 5, BER: 0.04 },
+        { EbNo: 6, BER: 0.02 },
+        { EbNo: 7, BER: 0.01 },
+        { EbNo: 8, BER: 0.008 },
+        { EbNo: 9, BER: 0.005 },
+        { EbNo: 10, BER: 0.001 },
+        { EbNo: 11, BER: 0.0003 },
+        { EbNo: 12, BER: 0.00008 },
+        { EbNo: 13, BER: 0.00001 },
+        { EbNo: 14, BER: 0.000001 },
+        { EbNo: 15, BER: 0.00000005 }
+    ],
+    '16_PSK': [
+        { EbNo: 0, BER: 0.45 },
+        { EbNo: 1, BER: 0.4 },
+        { EbNo: 2, BER: 0.35 },
+        { EbNo: 3, BER: 0.3 },
+        { EbNo: 4, BER: 0.25 },
+        { EbNo: 5, BER: 0.2 },
+        { EbNo: 6, BER: 0.15 },
+        { EbNo: 7, BER: 0.1 },
+        { EbNo: 8, BER: 0.07 },
+        { EbNo: 9, BER: 0.05 },
+        { EbNo: 10, BER: 0.03 },
+        { EbNo: 11, BER: 0.01 },
+        { EbNo: 12, BER: 0.009 },
+        { EbNo: 13, BER: 0.005 },
+        { EbNo: 14, BER: 0.001 },
+        { EbNo: 15, BER: 0.0003 },
+        { EbNo: 16, BER: 0.0001 },
+        { EbNo: 17, BER: 0.00004 },
+        { EbNo: 18, BER: 0.000003 }
+    ],
+    'BPSK/QPSK': [
+        { EbNo: 0, BER: 0.1 },
+        { EbNo: 1, BER: 0.08 },
+        { EbNo: 2, BER: 0.06 },
+        { EbNo: 3, BER: 0.04 },
+        { EbNo: 4, BER: 0.01 },
+        { EbNo: 5, BER: 0.008 },
+        { EbNo: 6, BER: 0.004 },
+        { EbNo: 7, BER: 0.001 },
+        { EbNo: 8, BER: 0.0002 },
+        { EbNo: 9, BER: 0.00003 },
+        { EbNo: 10, BER: 0.000003 },
+        { EbNo: 11, BER: 0.0000004 },
+        { EbNo: 12, BER: 0.00000001 }
+    ]
+};
+
+
+        function calculate_receiver_power() {
+            const getInputValue = (id) => parseFloat(document.getElementById(id).value);
+            const getUnitValue = (id) => document.getElementById(id).value;
+
+            const lp = getInputValue('lp');
+            const lpUnit = getUnitValue('unit1');
+            const freq = getInputValue('freq');
+            const freqUnit = getUnitValue('1');
+            const gt = getInputValue('gt');
+            const gtUnit = getUnitValue('unit2');
+            const gr = getInputValue('gr');
+            const grUnit = getUnitValue('unit3');
+            const R = getInputValue('r');
+            const lf = getInputValue('lf');
+            const lfUnit = getUnitValue('unit4');
+            const lo = getInputValue('lo');
+            const loUnit = getUnitValue('unit5');
+            const lf_margin = getInputValue('lf_margin');
+            const lf_marginUnit = getUnitValue('unit6');
+            const ar = getInputValue('ar');
+            const arUnit = getUnitValue('unit7');
+            const noisef = getInputValue('ns_total');
+            const noisefUnit = getUnitValue('unit8');
+            const margin = getInputValue('M');
+            const marginUnit = getUnitValue('unit9');
+            const userBER = getInputValue('BER');
+            const modulationType = document.querySelector('input[name="OS"]:checked').value;
+
+            if (!isNaN(lp) && !isNaN(freq) && !isNaN(gt) && !isNaN(gr) && !isNaN(R) && !isNaN(lf) && !isNaN(lo) && !isNaN(lf_margin) && !isNaN(ar) && !isNaN(noisef) && !isNaN(margin)) {
+                const convertedMargin = convertdB(margin, marginUnit);
+                const convertedNoisef = convertdB(noisef, noisefUnit);
+
+                const converted_lf = convertdB(lf, lfUnit);
+                const converted_lo= convertdB(lo, loUnit);
+                const converted_lp = convertdB(lp, lpUnit);
+                const converted_gt= convertdB(gt, grUnit);
+                const converted_gr = convertdB(gr, grUnit);
+                const converted_lf_margin= convertdB(lf_margin, lf_marginUnit);
+                const converted_ar = convertdB(ar, arUnit);
+                
+
+                const modulationData = modulationSchemes[modulationType];
+                const foundData = modulationData.find(item => item.BER === userBER);
+
+                if (foundData) {
+                    const EbNo = foundData.EbNo;
+                    const Pr = convertedMargin - 228.6 + convertedNoisef + R + EbNo;
+                    const Pt= Pr + converted_lp + converted_lf + converted_lo + converted_lf_margin -converted_gt - converted_gr - converted_ar;
+                    document.getElementById('power_result').textContent = `power at reciver end: ${Pr} dB watt and power at transmitter end: ${Pt} dB watt`;
+                } else {
+                    document.getElementById('power_result').textContent = 'BER value not found in the selected modulation scheme';
+                }
+            } else {
+                document.getElementById('power_result').textContent = 'Please enter a valid number';
+            }
+        }
+                            
+
+
+
+
     </script>
 </body>
 </html>
