@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neat Header Design</title>
+    <title>Wireless project</title>
     <link rel="stylesheet" href="projectcss.css">
 </head>
 <body>
@@ -13,12 +13,12 @@
                 <h1>CalcWee</h1>
             </div>
             <nav class="nav-links">
-                <a href="#basic">Basic</a>
-                <a href="#advanced">Advanced</a>
-                <a href="#">Power</a>
-                <a href="#">Throughput</a>
-                <a href="#">Design</a>
-                <a href="#">Support</a>
+                <a href="#" onclick="openTab(event, 'basic')">Basic</a>
+                <a href="#" onclick="openTab(event, 'advanced')">Advanced</a>
+                <a href="#" onclick="openTab(event, 'power')">Power</a>
+                <a href="#" onclick="openTab(event, 'throughput')">Throughput</a>
+                <a href="#" onclick="openTab(event, 'design')">Design</a>
+                <a href="#" onclick="openTab(event, 'support')">Support</a>
             </nav>
             <div class="cta-buttons">
                 <button class="btn register">Register for free</button>
@@ -33,7 +33,7 @@
             </div>
         </div>
     </header>
-
+    <div id="basic" class="tab-content">
     <section class="calculator-section" id="basic">
         <h2>Basic Calculations</h2>
         <div class="calc-container">
@@ -94,8 +94,9 @@
             </div>
         </div>
     </section>
+    </div>
 
-
+    <div id="advanced" class="tab-content ">
     <section class="calculator-section" id="advanced">
         <h2>Advanced Calculations</h2>
         <div class="calc-container">
@@ -114,8 +115,8 @@
                     <h3>OFDM symbol number of bits calculator</h3>
                     <label for="OFDM_bandwidth">enter OFDM bandwidth</label>
                     <input type="number"  id="OFDM_bandwidth" min="0">
-                    <label for="unit2">select unit</label>
-                    <select name="unit" id="unit2">
+                    <label for="2">select unit</label>
+                    <select name="unit" id="2">
                         <option value="Hz">HZ</option>
                         <option value="KHz">KHz</option>
                         <option value="MHz">MHz</option>
@@ -153,9 +154,182 @@
                 
             </div>
 
-        </div>
+        
 
+        </div>
     </section>
+    </div>
+
+
+
+    <div id="power" class="tab-content ">
+        <section class="calculator-section">
+            <h2>Power calculation</h2>
+            <p>please enter the following values:</p>
+            <div class="calc-container">
+            
+            <div class="calc-item">
+            <label for="lp">enter the path loss</label>
+            <input type="text" id="lp">
+            <label for="unit1">select unit</label> <!--power units-->
+                <select class="unit_selector" name="units" id="unit1">
+                    <option value="nu">no unit</option>
+                    <option value="dB">dB</option>
+                    <option value="dBm">dBm</option>
+                </select>
+            </div>
+
+            <div class="calc-item">
+            <label for="freq">enter Frequency</label>
+            <input type="text" id="freq">
+            <label for="1">select unit</label>
+                <select name="units" id="1">
+                    <option value="Hz">HZ</option>
+                    <option value="KHz">KHz</option>
+                    <option value="MHz">MHz</option>
+                </select>
+            </div>
+
+            <div class="calc-item">
+            <label for="gt">enter transmitted antenna gain</label>
+            <input type="text" id="gt">
+            <label for="unit2">select unit</label> <!--power units-->
+                <select class="unit_selector" name="units" id="unit2">
+                    <option value="nu">no unit</option>
+                    <option value="dB">dB</option>
+                    <option value="dBm">dBm</option>
+                </select>
+            </div>
+
+            <div class="calc-item">
+            <label for="gr">enter recived antenna gain</label>
+            <input type="text" id="gr">
+            <label for="unit3">select unit</label> <!--power units-->
+                <select class="unit_selector" name="units" id="unit3">
+                    <option value="nu">no unit</option>
+                    <option value="dB">dB</option>
+                    <option value="dBm">dBm</option>
+                </select>
+            </div>
+
+            <div class="calc-item">
+            <label for="r">enter data rate</label>
+            <input type="text" id="r">
+            </div>
+
+            <div class="calc-item">
+            <label for="lf">enter antenna feed line loss</label>
+            <input type="text" id="lf">
+            <label for="unit4">select unit</label> <!--power units-->
+                <select class="unit_selector" name="units" id="unit4">
+                    <option value="nu">no unit</option>
+                    <option value="dB">dB</option>
+                    <option value="dBm">dBm</option>
+                </select>
+            </div>
+
+            <div class="calc-item">
+            <label for="lo">enter other losses</label>
+            <input type="text" id="lo">
+            <label for="unit5">select unit</label> <!--power units-->
+                <select class="unit_selector" name="units" id="unit5">
+                    <option value="nu">no unit</option>
+                    <option value="dB">dB</option>
+                    <option value="dBm">dBm</option>
+                </select>
+            </div>
+
+            <div class="calc-item">
+            <label for="lf_margin">enter the fade margin</label>
+            <input type="text" id="lf_margin">
+            <label for="unit6">select unit</label> <!--power units-->
+                <select class="unit_selector" name="units" id="unit6">
+                    <option value="nu">no unit</option>
+                    <option value="dB">dB</option>
+                    <option value="dBm">dBm</option>
+                </select>
+            </div>
+
+            <div class="calc-item">
+            <label for="ar">enter the reciver amplifier gain</label>
+            <input type="text" id="ar">
+            <label for="unit7">select unit</label> <!--power units-->
+                <select class="unit_selector" name="units" id="unit7">
+                    <option value="nu">no unit</option>
+                    <option value="dB">dB</option>
+                    <option value="dBm">dBm</option>
+                </select>
+            </div>
+
+            <div class="calc-item">
+            <label for="ns_total">enter the noise figure total</label>
+            <input type="text" id="ns_total">
+            <label for="unit8">select unit</label> <!--power units-->
+                <select class="unit_selector" name="units" id="unit8">
+                    <option value="nu">no unit</option>
+                    <option value="dB">dB</option>
+                    <option value="dBm">dBm</option>
+                </select>
+            </div>
+
+            <div class="calc-item">
+            <label for="ns_tem">enter the noise temperature</label>
+            <input type="text" id="ns_tem">
+            <label for="temp">select unit</label> <!--power units-->
+                <select class="unit_selector" name="units" id="temp">
+                    <option value="k">Kelvin</option>
+                    <option value="c">celcuis</option>
+                    <option value="f">Fahrenheit</option>
+                </select>
+            </div>
+
+            <div class="calc-item">
+            <label for="M">enter the link margin</label>
+            <input type="text" id="M">
+            <label for="unit9">select unit</label> <!--power units-->
+                <select class="unit_selector" name="units" id="unit9">
+                    <option value="nu">no unit</option>
+                    <option value="dB">dB</option>
+                    <option value="dBm">dBm</option>
+                </select>
+            </div>
+
+            <div class="calc-item">
+            <label for="m_type">please select the modulation type </label>
+                <div>
+                    <input id="8_PSK" type="radio" name="OS" value="8_PSK">
+                    <label for="8_PSK">8_PSK</label>
+                </div>
+                <div>
+                    <input id="BPSK" type="radio" name="OS" value="BPSK">
+                    <label for="BPSK">BPSK</label>
+                </div>
+                <div>
+                    <input id="QPSK" type="radio" name="OS" value="QPSK">
+                    <label for="QPSK">QPSK</label>
+                </div>
+
+                <div>
+                    <input id="16_PSK" type="radio" name="OS" value="16_PSK">
+                    <label for="16_PSK">16_PSK</label>
+                </div>
+            </div>
+
+            <div class="calc-item">
+            <label for="BER">enter the maximum bit error rate</label>
+            <input type="text" id="BER">
+            </div>
+
+            <div class="calc-item">
+            <button onclick="calculate_power()"> Calculate power</button>
+            </div>
+            <div class="Max_trans_rate_result calc-result" id="Max_trans_rate_result">
+            </div>
+        </section>        
+    </div>
+
+
+    
 
     <script>
         let sampling_freq = 0; // Define sampling_freq in a broader scope
@@ -218,7 +392,7 @@
         function calculate_OFDM_symbol() {
             const bwInput = document.getElementById('OFDM_bandwidth');
             const subCarrierInput = document.getElementById('subCarrier');
-            const unitValue = document.getElementById('unit2').value;
+            const unitValue = document.getElementById('2').value;
 
             // Trim whitespace from input values and parse as floats
             const bw = parseFloat(bwInput.value.trim());
@@ -253,6 +427,65 @@
                 document.getElementById('Max_trans_rate_result').textContent = 'Please enter a valid number';
             }
         }
+        function convertfreq(value, unit) {
+            switch (unit) {
+                case 'Hz':
+                    return value; // Already in Hz
+                case 'KHz':
+                    return value * 1000; // Convert KHz to Hz
+                case 'MHz':
+                    return value * 1000000; // Convert MHz to Hz
+                default:
+                    return value; // Default case (should not happen if the units are controlled)
+            }
+        }
+
+        function converttemp(value, unit) {
+            switch (unit) {
+                case 'c':
+                    value = value + 273.15;
+                    return value ; 
+                case 'f':
+                    value= (value - 273.15) * 9/5 + 32;
+                    return value * 1000; 
+                default:
+                    return value; // Default case (should not happen if the units are controlled)
+            } 
+        }  
+        function convertdB(value, unit) {
+            switch (unit) {
+                case 'nu':
+                    value = 10 * Math.log10(value);
+                    return value ; 
+                case 'dBm':
+                    value= value - 30;
+                    return value * 1000; // Convert KHz to Hz
+                default:
+                    return value; // Default case (should not happen if the units are controlled)
+        }
+    }
+    function openTab(evt, tabName) {
+        // Hide all elements with class="tab-content" by setting display to none
+        var tabcontent = document.getElementsByClassName("tab-content");
+        for (var i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        
+        // Remove the class "active" from all elements with class="tab-button"
+        var tabbuttons = document.getElementsByClassName("tab-button");
+        for (var i = 0; i < tabbuttons.length; i++) {
+            tabbuttons[i].className = tabbuttons[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    // Optional: Automatically open the first tab if needed
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("defaultOpen").click(); // Add an ID "defaultOpen" to the default tab link
+    });
     </script>
 </body>
 </html>
