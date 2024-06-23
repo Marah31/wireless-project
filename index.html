@@ -774,7 +774,7 @@
 };
 
 
-        function calculate_receiver_power() {
+function calculate_receiver_power() {
             const getInputValue = (id) => parseFloat(document.getElementById(id).value);
             const getUnitValue = (id) => document.getElementById(id).value;
 
@@ -820,11 +820,10 @@
                 const converted_R = convertdB(R, RUnit);
                 const modulationData = modulationSchemes[modulationType];
                 const foundData = modulationData.find(item => item.BER === userBER);
-                 
+
                 if (foundData) {
                     const EbNo = foundData.EbNo;
                     const Pr = convertedMargin - 228.6 + convertedNoisef + converted_R + EbNo + converted_temp;
-                    Pr=Pr/1000;
                     const Pt= Pr + converted_lp + converted_lf + converted_lo + converted_lf_margin -converted_gt - converted_gr - converted_ar;
                     document.getElementById('power_result').textContent = `power at reciver end: ${Pr} dB watt and power at transmitter end: ${Pt} dB watt`;
                 } else {
