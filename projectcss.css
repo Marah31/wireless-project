@@ -241,3 +241,128 @@ main {
 #power button:active {
     transform: scale(0.98);
 }
+
+
+
+/* New CSS for the design tab */
+#design .calculator-section {
+    background-color: #333;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#design .calculator-section h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #f5a623;
+}
+
+#design .calc-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#design .textBoxHolder {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+}
+
+#design .textBoxHolder li {
+    background-color: #444;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#design .textBoxHolder label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+    color: #ddd;
+}
+
+#design .textBoxHolder input, #design .textBoxHolder select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #555;
+    color: white;
+    outline: none;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#design .textBoxHolder select {
+    appearance: none;
+    background-color: #555;
+    color: white;
+    padding-right: 30px;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23ffffff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+}
+
+#design button {
+    width: 50%;
+    padding: 12px;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 20px auto;
+}
+
+#design button:hover {
+    background-color: #218838;
+}
+
+#design #answers {
+    margin-top: 30px;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#design #answers li {
+    background-color: #444;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#design #answers p {
+    color: white;
+    font-size: 1.2rem;
+    margin: 0;
+    text-align: center;
+}
+
+#design .icon {
+    display: block;
+    font-size: 2rem;
+    color: #f5a623;
+    margin: 20px auto 0;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#design .icon:hover {
+    color: #f5a623;
+}

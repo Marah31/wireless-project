@@ -325,6 +325,173 @@
     </div>
 
 
+    <div class="tab-content" id="design">
+
+        <section class="calculator-section">
+            <h2>Desing cellular system</h2>
+            <p>please enter the following values:</p>
+            <div class="calc-container">
+                <ul class="textBoxHolder">
+                    <li>
+                        <label for="time/carrier">Enter time slot per carrier</label>
+                        <input type="number" 
+                        id="time/carrier" name="time/carrier" 
+                        placeholder="time slots per carrier" class="textBox" min="0">
+                    </li>
+                    
+                    <li>
+                        <label for="cityA">Enter the area of City A</label>
+                        <input type="number" 
+                        id="cityA" name="cityA" 
+                        placeholder="area of the city in km squared" class="textBox" min="0">
+                    </li>
+                    
+                    <li>
+                        <label for="subscribers">Enter the number of subscribers</label>
+                        <input type="number"
+                        id="subscribers" name="subscribers"
+                        placeholder="number of subscribers" class="textBox" min="0">
+                    </li>
+                    
+                    <li>
+                        <label for="H">Enter subscribers average number of calls per day (call/day)</label>
+                        <input type="number"
+                        id="H" name="H"
+                        placeholder="subscribers average number of calls per day (call/day)" class="textBox" min="0">
+                    </li>
+                    
+                    <li>
+                        <label for="limda">Enter average duration per call (min/call)</label>
+                        <input type="number"
+                        id="limda" name="limda"
+                        placeholder="average duration per call (min/call)" class="textBox" min="0">
+                    </li> 
+        
+                    <li>
+                        <label for="PdropcallL">Enter the probability of call being dropped</label>
+                        <input type="number"
+                        id="PdropcallL" name="PdropcallL"
+                        placeholder="probability of call being dropped (GOS)" class="textBox">
+                    </li> 
+        
+                    <li>
+                        <label for="SIR">Enter the signal to interference ratio</label>
+                        <input type="number"
+                        id="SIR" name="SIR"
+                        placeholder="SIR" class="textBox">
+                        <label for="unit_SIR">select unit</label> 
+                        <select class="unit_selector" name="units" id="unit_SIR">
+                            <option value="nu">no unit</option>
+                            <option value="dB">dB</option>
+                            <option value="dBm">dBm</option>
+                        </select>
+                    </li> 
+        
+                    <li>
+                        <label for="fadeMargin">Enter the fade margin</label>
+                        <input type="number"
+                        id="fadeMargin" name="fadeMargin"
+                        placeholder="fade margin" class="textBox">
+                        <label for="unit_design_fm">select unit</label>
+                        <select class="unit_selector" name="units" id="unit_design_fm">
+                            <option value="nu">no unit</option>
+                            <option value="dB">dB</option>
+                            <option value="dBm">dBm</option>
+                        </select>
+                    </li> 
+
+        
+                    <li>
+                        <label for="dnode">Enter the distance at which power were misured at</label>
+                        <input type="number"
+                        id="dnode" name="dnode"
+                        placeholder="d node:distance at which power were misured" class="textBox" min="0">
+                        <label for="unit_dnoce">select unit</label>
+                        <select class="unit_selector" name="units" id="unit_dnode">
+                            <option value="m">m</option>
+                            <option value="km">km</option>
+                            <option value="cm">cm</option>
+                        </select>
+                    </li> 
+        
+                    <li>
+                        <label for="P/dnode">Enter the power misured at d node</label>
+                        <input type="number"
+                        id="P/dnode" name="P/dnode"
+                        placeholder="power misured at d node" class="textBox">
+                        <label for="unit_P/dnode">select unit</label>
+                        <select class="unit_selector" name="units" id="unit_P/dnode">
+                            <option value="nu">no unit</option>
+                            <option value="dB">dB</option>
+                            <option value="dBm">dBm</option>
+                        </select>
+                    </li> 
+        
+                    <li>
+                        <label for="Rsensitivity">Enter the receiver sensitivity</label>
+                        <input type="number"
+                        id="Rsensitivity" name="Rsensitivity"
+                        placeholder="receiver sensitivity in micro watts" class="textBox">
+                    </li> 
+        
+                    <li>
+                        <label for="n">Enter the path loss exponent</label>
+                        <input type="number"
+                        id="n" name="n"
+                        placeholder="path loss exponent" class="textBox">
+                    </li> 
+                    
+                    <li>
+                        <label for="co-channel">Enter the number of co-channel interfering cells</label>
+                        <input type="number"
+                        id="co-channel" name="co-channel"
+                        placeholder="number of co-channel interfering cells" class="textBox" min="0">
+                    </li> 
+                </ul>
+
+                <button type="button" id="button1" onclick="solve()">
+                    calculate</button>
+                 
+                 <ul class="textBoxHolder" id="answers">
+                     <li>
+                         <p id="A">Maximum distance between transmitter and receiver for reliable communication</p>
+                     </li>
+         
+                     <li>
+                         <p id="B">Maximum cell size assuming hexagonal cells</p>
+                     </li>
+         
+                     <li>
+                         <p id="C">The number of cells in the service area</p>
+                     </li>
+         
+                     <li>
+                         <p id="D">Traffic load in the whole cellular system in Erlangs</p>
+                     </li>
+         
+                     <li>
+                         <p id="E">Traffic load in each cell in Erlangs</p>
+                     </li> 
+                     
+                     <li>
+                         <p id="F">Number of cells in each cluster</p>
+                     </li>
+         
+                     <li>
+                         <p id="G">Minimum number of carriers needed (in the whole system) to achieve the required 
+                             Quality of Service</p>
+                     </li>
+         
+                     <li>
+                         <p id="H">Minimum number of carriers needed (in the whole system)</p>
+                     </li>
+                 </ul>
+                 <i class="fa-solid fa-house icon" id="home_icon"></i>
+            
+            </div>
+
+        </section>
+    </div>
     
 
     <script>
@@ -435,6 +602,16 @@
                     return value; // Default case (should not happen if the units are controlled)
             }
         }
+        function convertdistance(value, unit) {
+            switch (unit) {
+                case 'cm':
+                    return value / 100; 
+                case 'km':
+                    return value * 1000; 
+                default:
+                    return value; 
+            }
+        }
 
         function converttemp(value, unit) {
             switch (unit) {
@@ -443,7 +620,7 @@
                     return value ; 
                 case 'f':
                     value= (value - 273.15) * 9/5 + 32;
-                    return value * 1000; 
+                    return value; 
                 default:
                     return value; // Default case (should not happen if the units are controlled)
             } 
@@ -596,10 +773,98 @@
                 document.getElementById('power_result').textContent = 'Please enter a valid number';
             }
         }
-                            
+    
+        function solve()
+            {
+               let Pr = document.getElementById("Rsensitivity").value
+               let Pnode = document.getElementById("P/dnode").value
+               Pnode /= 10
+               Pnode = Math.pow(10,Pnode)
+               let dnode = document.getElementById("dnode").value
+               let n = document.getElementById("n").value
+               let Aans = Math.pow(10,-6)
+               Aans = Pr * Aans
+               Aans /= Pnode
+               Aans = Math.pow(Aans, (1/n))
+               Aans = dnode/Aans
+               document.getElementById("A").innerText = 
+               "Maximum distance between transmitter and receiver for reliable communication = " + Aans
+
+               let Bans = Math.pow(3,(1/2))
+               Bans *= (3/2)
+               Aans = Math.pow(Aans,2)
+               Bans *= Aans 
+               document.getElementById("B").innerText = 
+               "Maximum cell size assuming hexagonal cells = " + Bans
+
+               let CityA = document.getElementById("cityA").value
+               CityA *= Math.pow(10,6)
+               let Cans = CityA/Bans
+               Cans = Math.round(Cans)
+               document.getElementById("C").innerText = 
+               "The number of cells in the service area = " + Cans
+
+               let H = document.getElementById("H").value
+               let limda = document.getElementById("limda").value
+               let user = document.getElementById("subscribers").value 
+               let Dans = (H*limda/(24*60))
+               Dans *= user
+               document.getElementById("D").innerText = 
+               "Traffic load in the whole cellular system in Erlangs = " + Dans
+                const trafic_load_each_cell= Dans/Cans; 
+                document.getElementById("E").innerText = 
+               "Traffic load in each cell in Erlangs = " + trafic_load_each_cell
+               let SIR = document.getElementById("SIR").value
+                if (isNaN(SIR) || isNaN(n)) {
+                    alert("Please enter valid numeric values for SIR and n.");
+                    return;
+                }
+
+                let result = findNandValues(SIR, n);
+
+                if (result) {
+                    let num_cell_cluster = result.N;
+                    document.getElementById("F").innerText = "Number of cells in each cluster = " + num_cell_cluster;
+                } else {
+                    document.getElementById("F").innerText = "No valid N found that satisfies the equations.";
+                }
 
 
 
+
+
+
+            }
+
+            function findNandValues(SIR, n) {
+            let maxN = Math.pow((SIR * 6), 2 / n) / 3;
+            let roundedN = Math.ceil(maxN); // Round up to the nearest integer
+
+            function isValidN(N) {
+                for (let i = 0; i <= Math.sqrt(N); i++) {
+                    for (let j = 0; j <= Math.sqrt(N); j++) {
+                        if (i * i + i * j + j * j === N) {
+                            return { N, i, j };
+                        }
+                    }
+                }
+                return null;
+                }
+
+                let result = isValidN(roundedN);
+                if (result) {
+                    return result;
+                }
+
+                for (let offset = 1; offset <= roundedN; offset++) {
+                    result = isValidN(roundedN + offset);
+                    if (result) {
+                        return result;
+                    }
+                }
+
+                return null;
+            }
 
     </script>
 </body>
