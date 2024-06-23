@@ -341,6 +341,12 @@
                     <div class="calc-item">
                         <label for="trans_rate">enter the data transmission rate</label>
                         <input type="text" id="trans_rate">
+                        <label for="th_trans_rate">select unit</label>
+                        <select name="unit" id="th_trans_rate">
+                            <option value="Hz">HZ</option>
+                            <option value="KHz">KHz</option>
+                            <option value="MHz">MHz</option>
+                        </select>
                     </div>
                 
                     <div class="calc-item">
@@ -369,6 +375,12 @@
                     <div class="calc-item">
                         <label for="f_size">enter the frame size</label>
                         <input type="text" id="f_size">
+                        <label for="th_frame_size">select unit</label>
+                        <select name="unit" id="th_frame_size">
+                            <option value="Hz">HZ</option>
+                            <option value="KHz">KHz</option>
+                            <option value="MHz">MHz</option>
+                        </select>
                     </div>
 
                     <div class="calc-item">
@@ -443,28 +455,8 @@
                         <input type="number"
                         id="SIR" name="SIR"
                         placeholder="SIR" class="textBox">
-                        <label for="unit_SIR">select unit</label> 
-                        <select class="unit_selector" name="units" id="unit_SIR">
-                            <option value="nu">no unit</option>
-                            <option value="dB">dB</option>
-                            <option value="dBm">dBm</option>
-                        </select>
                     </li> 
-        
-                    <li>
-                        <label for="fadeMargin">Enter the fade margin</label>
-                        <input type="number"
-                        id="fadeMargin" name="fadeMargin"
-                        placeholder="fade margin" class="textBox">
-                        <label for="unit_design_fm">select unit</label>
-                        <select class="unit_selector" name="units" id="unit_design_fm">
-                            <option value="nu">no unit</option>
-                            <option value="dB">dB</option>
-                            <option value="dBm">dBm</option>
-                        </select>
-                    </li> 
-
-        
+    
                     <li>
                         <label for="dnode">Enter the distance at which power were misured at</label>
                         <input type="number"
@@ -828,10 +820,11 @@
                 const converted_R = convertdB(R, RUnit);
                 const modulationData = modulationSchemes[modulationType];
                 const foundData = modulationData.find(item => item.BER === userBER);
-
+                 
                 if (foundData) {
                     const EbNo = foundData.EbNo;
                     const Pr = convertedMargin - 228.6 + convertedNoisef + converted_R + EbNo + converted_temp;
+                    Pr=Pr/1000;
                     const Pt= Pr + converted_lp + converted_lf + converted_lo + converted_lf_margin -converted_gt - converted_gr - converted_ar;
                     document.getElementById('power_result').textContent = `power at reciver end: ${Pr} dB watt and power at transmitter end: ${Pt} dB watt`;
                 } else {
@@ -945,7 +938,7 @@
             if (!isNaN(transmissionRate) && !isNaN(frame_size) && !isNaN(frame_rate) && !isNaN(signal_progation)) {
                 Tfram = frame_size / transmissionRate; // Time for one frame in seconds
                 G = frame_rate * Tfram; // Original calculation of G
-
+                lamda = signal_progation/Tfram;
                 // Cap G to prevent too large values causing underflow in Math.exp
                 const cappedG = Math.min(G, 20); // Cap G to a maximum of 20
 
@@ -958,13 +951,13 @@
 
                 switch (Acces_technique) {
                     case 'pure_aloha':
-                        sth = cappedG * Math.exp(-2 * cappedG);
+                        sth = G * Math.exp(-2 * G);
                         break;
                     case 'slotted_aloha':
-                        sth = cappedG * Math.exp(-cappedG);
+                        sth = G * Math.exp(-G);
                         break;
                     case 'uns_nonp_CSMA':
-                        sth = (cappedG * Math.exp(-2*lamda * Tfram))/((cappedG + 2*cappedG*lamda)+ Math.exp(-2*lamda*cappedG)); // Assuming lamda uses Tfram directly
+                        sth = (G * Math.exp(-2*lamda * Tfram))/((G + 2*G*lamda)+ Math.exp(-2*lamda*G)); // Assuming lamda uses Tfram directly
                         break;
                     default:
                         document.getElementById('throughput_result').textContent = 'Invalid access technique selected';
