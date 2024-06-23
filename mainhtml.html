@@ -215,6 +215,12 @@
             <div class="calc-item">
             <label for="r">enter data rate</label>
             <input type="text" id="r">
+            <label for="dataR_unit">select unit</label> <!--power units-->
+                <select class="unit_selector" name="units" id="dataR_unit">
+                    <option value="nu">no unit</option>
+                    <option value="dB">dB</option>
+                    <option value="dBm">dBm</option>
+                </select>
             </div>
 
             <div class="calc-item">
@@ -730,6 +736,7 @@
             const gr = getInputValue('gr');
             const grUnit = getUnitValue('unit3');
             const R = getInputValue('r');
+            const RUnit= getInputValue('dataR_unit');
             const lf = getInputValue('lf');
             const lfUnit = getUnitValue('unit4');
             const lo = getInputValue('lo');
@@ -743,6 +750,8 @@
             const margin = getInputValue('M');
             const marginUnit = getUnitValue('unit9');
             const userBER = getInputValue('BER');
+            const temp= getInputValue('ns_tem');
+            const tempUnit = getUnitValue('temp');
             const modulationType = document.querySelector('input[name="OS"]:checked').value;
 
             if (!isNaN(lp) && !isNaN(freq) && !isNaN(gt) && !isNaN(gr) && !isNaN(R) && !isNaN(lf) && !isNaN(lo) && !isNaN(lf_margin) && !isNaN(ar) && !isNaN(noisef) && !isNaN(margin)) {
@@ -756,14 +765,14 @@
                 const converted_gr = convertdB(gr, grUnit);
                 const converted_lf_margin= convertdB(lf_margin, lf_marginUnit);
                 const converted_ar = convertdB(ar, arUnit);
-                
-
+                const converted_temp = convertdB(temp, tempUnit);
+                const converted_R = convertdB(R, RUnit);
                 const modulationData = modulationSchemes[modulationType];
                 const foundData = modulationData.find(item => item.BER === userBER);
 
                 if (foundData) {
                     const EbNo = foundData.EbNo;
-                    const Pr = convertedMargin - 228.6 + convertedNoisef + R + EbNo;
+                    const Pr = convertedMargin - 228.6 + convertedNoisef + converted_R + EbNo + converted_temp;
                     const Pt= Pr + converted_lp + converted_lf + converted_lo + converted_lf_margin -converted_gt - converted_gr - converted_ar;
                     document.getElementById('power_result').textContent = `power at reciver end: ${Pr} dB watt and power at transmitter end: ${Pt} dB watt`;
                 } else {
