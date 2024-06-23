@@ -157,7 +157,7 @@ main {
 .calc-item button {
     width: 100%;
     padding: 10px;
-    background-color: #1e90ff;
+    background-color: #4b49ad;
     border: none;
     border-radius: 5px;
     color: white;
@@ -166,7 +166,8 @@ main {
 }
 
 .calc-item button:hover {
-    background-color: #1c7ed6;
+    /*background-color: #1c7ed6;*/
+    background-color: #655cef;
 }
 
 .calc-result {
@@ -189,15 +190,20 @@ main {
 
 #power h2 {
     font-size: 24px;
-    color: #89DDFF; /* Light blue for headings */
+    color: #89DDFF; 
     margin-bottom: 20px;
 }
-
+#power p {
+    font-size: 24px;
+    color: #ffffff; 
+    margin-bottom: 20px;
+}
 #power .calc-item {
-    background-color: #434758; /* Slightly lighter background for input areas */
+    background-color: #434758; 
     padding: 15px;
     border-radius: 5px;
     margin-bottom: 15px;
+    box-sizing: border-box; 
 }
 
 #power label {
@@ -219,11 +225,11 @@ main {
 }
 
 #power input:focus, #power select:focus {
-    border-color: #82AAFF; /* Focus color */
+    border-color: #82AAFF; 
 }
 
-#power button {
-    background-color: #C792EA; /* Purple for buttons */
+#power .calc-item button {
+    background-color: #9269c7; 
     color: white;
     border: none;
     padding: 10px 20px;
@@ -231,17 +237,33 @@ main {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
+    width: calc(100% - 30px); 
+    margin: auto; 
+    display: block; 
 }
 
 #power button:hover {
-    background-color: #BA68C8; /* Darker purple on hover */
+    background-color: #BA68C8; 
 }
 
-/* Optional: Animation for button click */
+
 #power button:active {
     transform: scale(0.98);
 }
 
+#throughput .calc-item button {
+    background-color: #9269c7; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: calc(100% - 30px); 
+    margin: auto; 
+    display: block; 
+}
 
 
 /* New CSS for the design tab */
@@ -365,4 +387,12 @@ main {
 
 #design .icon:hover {
     color: #f5a623;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
 }
